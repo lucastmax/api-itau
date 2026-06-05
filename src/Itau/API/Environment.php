@@ -11,6 +11,7 @@ class Environment
 
     private $apiPix;
     private $apiBolecode;
+    private $apiBolepix;
     private $apiAuth;
     private $apiBoleto;
     private $apiBoletoConsulta;
@@ -20,13 +21,14 @@ class Environment
      * @param string $api
      *
      */
-    private function __construct($apiAuth, $apiPix, $apiBolecode, $apiBoleto, $apiBoletoConsulta)
+    private function __construct($apiAuth, $apiPix, $apiBolecode, $apiBoleto, $apiBoletoConsulta, $apiBolepix = null)
     {
         $this->apiAuth = $apiAuth;
         $this->apiPix = $apiPix;
         $this->apiBolecode = $apiBolecode;
         $this->apiBoleto = $apiBoleto;
         $this->apiBoletoConsulta = $apiBoletoConsulta;
+        $this->apiBolepix = $apiBolepix;
     }
 
     /**
@@ -40,7 +42,8 @@ class Environment
             'https://secure.api.itau/pix_recebimentos/v2',
             'https://secure.api.itau/pix_recebimentos_conciliacoes/v2',
             'https://api.itau.com.br/cash_management/v2',
-            'https://secure.api.cloud.itau.com.br/boletoscash/v2'
+            'https://secure.api.cloud.itau.com.br/boletoscash/v2',
+            'https://pix-pj.itau.com.br/recebimentos-pix/v1'
         );
     }
 
@@ -52,6 +55,11 @@ class Environment
     public function getApiBoleCodeUrl(): string
     {
         return $this->apiBolecode;
+    }
+
+    public function getApiBolePixUrl(): string
+    {
+        return $this->apiBolepix;
     }
 
     public function getApiBoletoUrl(): string

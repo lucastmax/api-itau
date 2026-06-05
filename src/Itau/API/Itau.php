@@ -3,6 +3,8 @@ namespace Itau\API;
 
 use Itau\API\BoleCode\BoleCode;
 use Itau\API\BoleCode\BoleCodeResponse;
+use Itau\API\BolePix\BolePix;
+use Itau\API\BolePix\BolePixResponse;
 use Itau\API\Boleto\Boleto;
 use Itau\API\Boleto\BoletoRequest;
 use Itau\API\Boleto\BoletoResponse;
@@ -197,6 +199,29 @@ class Itau
 
         } catch (\Exception $e) {
             return $this->generateErrorResponse($boleCodeResponse, $e);
+        }
+    }
+
+    public function bolePix(BolePix $bolePix): BolePixResponse
+    {
+        $bolePixResponse = new BolePixResponse();
+        try{
+            if ($this->debug) {
+                print $bolePix->toJSON();
+            }
+
+            $request = new Request($this);
+            $response = $request->post($this, "{$this->getEnvironment()->getApiBolePixUrl()}/boletos-pix", $bolePix->toJSON());
+
+            // Add fields do not return in response
+            $bolePixResponse->mapperJson($bolePix->toArray());
+            // Add response fields
+            $bolePixResponse->mapperJson($response);
+            $bolePixResponse->setStatus(BaseResponse::STATUS_CONFIRMED);
+            return $bolePixResponse;
+
+        } catch (\Exception $e) {
+            return $this->generateErrorResponse($bolePixResponse, $e);
         }
     }
 

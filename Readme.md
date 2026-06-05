@@ -113,6 +113,64 @@ try{
 }
 ```
 
+#### API bolepix (Boleto + PIX - recebimentos v1):
+
+```php
+<?php
+
+require __DIR__ . "/../vendor/autoload.php";
+
+use Itau\API\Itau;
+use Itau\API\BolePix\BolePix;
+use Itau\API\BolePix\DadoBoleto;
+use Itau\API\BolePix\TipoPessoa;
+
+try{
+    $itau = new Itau(
+        "clientID",
+        "secretToken",
+        "caminhoCertificado",
+        "caminhoCertificadoKey"
+    );
+
+    #Descomente este trecho caso queira imprimir na tela o JSON da requisicao
+    #$itau->setDebug(true);
+
+    $bolePix = new BolePix(
+        BolePix::ETAPA_EFETIVO,
+        "1500",
+        "005206",
+        "1",
+        "1234.56",
+        DadoBoleto::ESPECIE_DM,
+        "REF123456",
+        "Joao da Silva",
+        TipoPessoa::PESSOA_FISICA,
+        "12345678901",
+        "Rua das Flores",
+        "10",
+        null,
+        "Centro",
+        "Sao Paulo",
+        "SP",
+        "01310100",
+        "12345678",
+        "2026-12-31"
+    );
+
+    $response = $itau->bolePix($bolePix);
+
+    #Caso tenha sucesso, conseguira recuperar o TXID dessa maneira
+    $response->getTxid();
+
+    #PIXCOPIA E COLA - Em caso de sucesso
+    $response->getPixCopiaECola();
+
+} catch(Exception $e){
+
+}
+```
+
 ### Explicação dos campos
 
 ##### Modo
