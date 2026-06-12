@@ -15,7 +15,7 @@ class Juros implements \JsonSerializable
 
     private string $codigo_tipo_juros;
     private string $valor_juros;
-    private string $percentual_juros;
+    private  $percentual_juros;
     private string $data_juros;
 
     public function setJuros($codigo, $valor = null, $percentual = null, $data = null): self
@@ -23,11 +23,11 @@ class Juros implements \JsonSerializable
         $this->codigo_tipo_juros = $codigo;
 
         if (null !== $valor) {
-            $this->valor_juros = number_format((float) $valor, 2, '.', '');
+            $this->valor_juros = (float) $valor * 100;
         }
 
         if (null !== $percentual) {
-            $this->percentual_juros = number_format((float) $percentual, 5, '.', '');
+            $this->percentual_juros = (float) $percentual * 100000; //number_format((float) $percentual, 5, '.', '');
         }
 
         if (null !== $data) {

@@ -9,7 +9,7 @@ class DadosIndividuaisBoleto implements \JsonSerializable
 
     private string $numero_nosso_numero;
     private string $data_vencimento;
-    private string $valor_titulo;
+    private $valor_titulo;
     private string $data_limite_pagamento;
     private string $texto_seu_numero;
     private string $texto_uso_beneficiario;
@@ -18,7 +18,7 @@ class DadosIndividuaisBoleto implements \JsonSerializable
     {
         $this->numero_nosso_numero = str_pad($nossoNumero, 8, '0', STR_PAD_LEFT);
         $this->data_vencimento = $dataVencimento;
-        $this->valor_titulo = number_format((float) $valor, 2, '.', '');
+        $this->valor_titulo = (float) $valor * 100; //number_format((float) $valor, 2, '.', '');
 
         if (null !== $limitePagamento) {
             $this->data_limite_pagamento = $limitePagamento;
@@ -39,7 +39,7 @@ class DadosIndividuaisBoleto implements \JsonSerializable
 
     public function setTextoSeuNumero($textoSeuNumero): self
     {
-        $this->texto_seu_numero = mb_substr($textoSeuNumero, 0, 50);
+        $this->texto_seu_numero = mb_substr($textoSeuNumero, 0, 10);
         return $this;
     }
 

@@ -13,7 +13,7 @@ class Multa implements \JsonSerializable
 
     private string $codigo_tipo_multa;
     private string $valor_multa;
-    private string $percentual_multa;
+    private $percentual_multa;
     private string $data_multa;
 
     public function setMulta($codigo, $valor = null, $percentual = null, $data = null): self
@@ -21,11 +21,11 @@ class Multa implements \JsonSerializable
         $this->codigo_tipo_multa = $codigo;
 
         if (null !== $valor) {
-            $this->valor_multa = number_format((float) $valor, 2, '.', '');
+            $this->valor_multa = (float) $valor * 100;
         }
 
         if (null !== $percentual) {
-            $this->percentual_multa = number_format((float) $percentual, 5, '.', '');
+            $this->percentual_multa = (float) $percentual * 100000; //number_format((float) $percentual, 5, '.', '');
         }
 
         if (null !== $data) {

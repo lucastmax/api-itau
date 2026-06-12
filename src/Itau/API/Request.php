@@ -102,6 +102,7 @@ class Request
         if (is_array($responseDecode) && isset($responseDecode['error'])) {
             throw new ItauException($responseDecode['error_description'], 100);
         }
+
         $credentials->setAuthorizationToken($responseDecode["access_token"]);
         return $credentials;
     }    

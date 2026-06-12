@@ -15,7 +15,7 @@ class DadoBoleto implements \JsonSerializable
     private string $tipo_boleto = "a vista";
     private string $codigo_carteira = "109";
     private string $codigo_especie;
-    private string $valor_total_titulo;
+    private  $valor_total_titulo;
     private string $data_emissao;
     private Pagador $pagador;
     private int $codigo_tipo_vencimento;
@@ -34,7 +34,7 @@ class DadoBoleto implements \JsonSerializable
 
     public function setDados($valor, $codigoEspecie = self::ESPECIE_DM): self
     {
-        $this->valor_total_titulo = $this->formatDecimal($valor);
+        $this->valor_total_titulo = $this->formatDecimal($valor) * 100;
         $this->codigo_especie = $codigoEspecie;
         return $this;
     }
@@ -186,6 +186,6 @@ class DadoBoleto implements \JsonSerializable
 
     private function formatDecimal($valor): string
     {
-        return number_format((float) $valor, 2, '.', '');
+        return (float) $valor; //number_format((float) $valor, 2, '.', '');
     }
 }
