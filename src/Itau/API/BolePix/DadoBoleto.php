@@ -34,7 +34,7 @@ class DadoBoleto implements \JsonSerializable
 
     public function setDados($valor, $codigoEspecie = self::ESPECIE_DM): self
     {
-        $this->valor_total_titulo = $this->formatDecimal($valor) * 100;
+        $this->valor_total_titulo = (int)str_replace('.', '', number_format($valor, 2, '.', ''));
         $this->codigo_especie = $codigoEspecie;
         return $this;
     }
