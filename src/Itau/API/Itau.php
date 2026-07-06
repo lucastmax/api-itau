@@ -298,13 +298,19 @@ class Itau
         $movimentacaoResponse = new MovimentacaoResponse();
 
         $path = str_pad($agencia, 4, '0', STR_PAD_LEFT).str_pad($contaComDigito, 8, '0', STR_PAD_LEFT);
+
+        $url = "https://boletos.cloud.itau.com.br/boletos/v3/francesas/{$path}/movimentacoes?data={$data}&page={$page}";
+        if($tipo != null){
+            $url .= "&tipo=" . $tipo;
+        };
+
         $request = new Request($this);
-        $response = $request->get($this, "https://boletos.cloud.itau.com.br/boletos/v3/francesas/{$path}/movimentacoes?data={$data}&tipo_movimentacao={$tipo}&page={$page}", '{}');
+        $response = $request->get($this,$url);
         $movimentacaoResponse->mapperJson($response);
         return $movimentacaoResponse;
     }
 
-    public function renovarCertificado($conteudoNovo)
+    public function renovarCertificado($contjeudoNovo)
     {
      
         $request = new Request($this);
