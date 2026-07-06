@@ -224,6 +224,7 @@ class Request
             throw new ItauException("Request Exception, error: {$e->getMessage()}", 100);
         }
 
+
         // Verify error
         if ($response === false) {
             $errorMessage = curl_error($curl);

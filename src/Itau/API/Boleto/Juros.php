@@ -19,7 +19,7 @@ class Juros implements JsonSerializable
     {
         $this->codigo_tipo_juros = $codigo;
         if($codigo != self::SEM_JUROS){
-            $this->percentual_juros = $percentual*100000;
+             $this->percentual_juros = $percentual*100000;
         }
 
         $this->quantidade_dias_juros = $quantidade_dias_juros;

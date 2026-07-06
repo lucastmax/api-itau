@@ -3,7 +3,6 @@
 namespace Itau\API\Boleto;
 
 use Itau\API\BaseResponse;
-use Itau\API\BoleCode\DadoBoleto;
 
 class BoletoResponse extends BaseResponse
 {

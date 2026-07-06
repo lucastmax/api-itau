@@ -2,7 +2,6 @@
 namespace Itau\API\Boleto;
 
 use Itau\API\BoleCode\Beneficiario;
-use Itau\API\BoleCode\DadoBoleto;
 use Itau\API\BoleCode\Juros;
 use Itau\API\BoleCode\Pagador;
 use Itau\API\TraitEntity;
