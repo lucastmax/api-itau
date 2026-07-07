@@ -301,7 +301,7 @@ class Itau
 
         $url = "https://boletos.cloud.itau.com.br/boletos/v3/francesas/{$path}/movimentacoes?data={$data}&page={$page}";
         if($tipo != null){
-            $url .= "&tipo=" . $tipo;
+            $url .= "&tipo_movimentacao=" . $tipo;
         };
 
         $request = new Request($this);
