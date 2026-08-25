@@ -310,7 +310,7 @@ class Itau
         return $movimentacaoResponse;
     }
 
-    public function renovarCertificado($contjeudoNovo)
+    public function renovarCertificado($conteudoNovo)
     {
      
         $request = new Request($this);
